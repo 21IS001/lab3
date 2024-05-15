@@ -1,0 +1,26 @@
+x=[4 5 7 10 11 13]
+y=[48 100 294 900 1210 2028]
+lag_poly(x,y)
+
+function[]=lag_poly(x,y)
+n=length(x)
+poly=0;
+syms t
+for i=1:n
+    l=1;
+    for j=1:n
+        if(i~=j)
+            l=l*(t-x(j))/(x(i)-x(j));
+        end
+    end
+    poly=poly+l*y(i);
+end
+shreyas=simplify(poly)
+t=x(1):0.001:x(n);
+z=eval(shreyas);
+plot(t,z,'r')
+hold on
+plot(x,y,'*')
+end
+
+
